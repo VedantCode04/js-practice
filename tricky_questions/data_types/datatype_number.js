@@ -24,12 +24,12 @@ console.log(billion, " ", billion2);
 
 var billion3 = 1e9; // 1 billion, literally: 1 and 9 zeroes
 // multiplies the value before 'e' with 10^x , x = the value after 'e'
-alert(7.3e9); // 7.3 billions (same as 7300000000 or 7_300_000_000)
+console.log(7.3e9); // 7.3 billions (same as 7300000000 or 7_300_000_000)
 
 var num = 255;
 // number.toString(x), x = base, like 2 for binary, 8 for ocatcl, 10 for decimal, 16 for hexa
-alert(num.toString(16)); // ff
-alert(num.toString(2)); // 11111111
+console.log(num.toString(16)); // ff
+console.log(num.toString(2)); // 11111111
 
 // Using two dots (..)
 // console.log(123456..toString(36));  // {whatever the answer is, it is valid}
