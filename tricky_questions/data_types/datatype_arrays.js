@@ -187,3 +187,35 @@ console.log(Array.from("hello")); // [ 'h', 'e', 'l', 'l', 'o' ]
 console.log(Array.from(new Set([1, 2, 3, 4]))); // [ 1, 2, 3, 4 ]
 console.log(Array.from({ length: 10 }, (el, index) => index));
 // [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+// 4. map(func, thisArg) : map allows for an optional thisArg
+// to set the this context in the function all
+// every function that takes callbacks allows for the optional thisArg, except 'sort'
+var army = {
+  minAge: 18,
+  maxAge: 27,
+  canJoin(user) {
+    return user.age >= this.minAge && user.age < this.maxAge;
+  },
+};
+
+var users = [{ age: 12 }, { age: 22 }, { age: 33 }, { age: 27 }, { age: 88 }];
+
+var soldiers = users.map(army.canJoin, army);
+console.log(soldiers); // [ false, true, false, false, false ]
+
+var soldiers = users.filter(army.canJoin, army);
+console.log(soldiers); // [ { age: 22 } ]
+
+// ********* Iteration in Array
+
+// 1. forEach -- just iterates over the array like for loop
+// only catch is that you can't use break/ continue inside this
+var arr = [1, 2, 3, 4, 5];
+
+arr.forEach((val) => {
+  if (val == 3) {
+    console.log("3 spotted");
+  }
+  console.log(val);
+});
