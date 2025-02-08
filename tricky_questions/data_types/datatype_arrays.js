@@ -157,3 +157,33 @@ var sum = arr.reduce((acc, val, i) => {
   return acc + val;
 }, 0);
 console.log(sum);
+
+// Misc methods
+
+// 1. sort(callback) : sorts the array it self
+// Note: pass the sorting function to sort numbers,
+// cause it type converts to string then sorts, so invalid output
+
+var arr = [1, 2, 3, 4, 35];
+var arr2 = [1, 2, 3, 4, 35];
+console.log(arr.sort()); // [ 1, 2, 3, 35, 4 ]
+console.log(arr.sort((a, b) => a - b)); // [ 1, 2, 3, 4, 35 ]
+
+// 2. Array.isArray(val) : checks if the passed val is array or not
+
+// below output is true
+console.log(Array.isArray([]));
+console.log(Array.isArray([1]));
+console.log(Array.isArray(new Array()));
+console.log(Array.isArray(new Array("a", "b", "c", "d")));
+console.log(Array.isArray(new Array(3)));
+
+console.log(Array.isArray("hello")); // false
+console.log(Array.isArray({})); // false
+
+// 3. Array.from(args) : creates array from args
+
+console.log(Array.from("hello")); // [ 'h', 'e', 'l', 'l', 'o' ]
+console.log(Array.from(new Set([1, 2, 3, 4]))); // [ 1, 2, 3, 4 ]
+console.log(Array.from({ length: 10 }, (el, index) => index));
+// [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
