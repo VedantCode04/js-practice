@@ -147,6 +147,7 @@ console.log(obj6.details === obj5.details); // true
 
 // 2. spread operator
 // only shallow copy
+// can clone functions
 
 obj5 = {
   name: "vedant",
@@ -162,18 +163,30 @@ console.log(obj6.details === obj5.details); // true
 
 // 3. structuredClone
 // deep clone
-
+// dont clone functions
+// faster
+// retains circular refrences
+// can use map, set, in this, weakmap, weakset also
 obj = {
   name: "vedant",
   details: {
     age: 21,
   },
+  set: new Set([1, 2, 3, 4]),
+  map: new Map(),
 };
 
-obj2 = structuredClone(obj);
+obj.self = obj;
 
-console.log(obj2 === obj); // false
-console.log(obj2.details === obj.details); // false
+obj2 = structuredClone(obj);
+console.log(obj2);
+console.log(obj2.set instanceof Set); // true
+
+console.log(obj2.self); // will print obj2
+console.log(obj.self); // will print obj
+
+console.log(obj.self === obj.self); // different objects
+// structuredClone maintains circular reference
 
 obj = {
   name: "vedant",
@@ -188,8 +201,8 @@ obj2 = structuredClone(obj); // throw's error
 console.log(obj2 === obj); // false
 
 // 4. json stringify + parse
-// deep clone , clones functions also
-// best approach
+// deep clone, doesnt clone functions
+// remove undefined properties
 obj = {
   name: "vedant",
   details: {
@@ -198,9 +211,16 @@ obj = {
   f: function () {
     console.log("function");
   },
+  set: new Set([1, 2, 3, 4]),
+  map: new Map(),
 };
 
-obj2 = JSON.parse(JSON.stringify(obj));
+obj.self = obj; // if we add this
 
-console.log(obj2 === obj); // false
-console.log(obj2.details === obj.details); // false
+obj2 = JSON.parse(JSON.stringify(obj)); // error as trying to convert circular reference
+
+console.log(obj2);
+console.log(obj2.set instanceof Set); // false
+// set will be converted to normal object
+// set map etc not supported, cause they are not serializable
+// date object also converted to normal string
