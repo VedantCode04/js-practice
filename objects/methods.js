@@ -96,10 +96,10 @@ Object.freeze(obj);
 console.log(Object.isFrozen(obj)); // true
 
 // 13. Object.defineProperty(obj, prop, descriptor)
-// descriptor = {writable, enumerable, configurable, readable}
+// descriptor = {value, enumerable, configurable, readable}
 // writable : true | false - edit if the property is writable or not
-// readbale : same for this,
 // enumerable : same for this also
+// value : sets value
 // configurable : same for this
 // once set false to configurable, it's is permenantly locked, cant be changed
 // Please note: configurable: false prevents changes of property flags
