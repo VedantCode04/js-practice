@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Git Commands Cheat Sheet</title>
+    <style>
+      /* General Styles */
+      body {
+        font-family: "Arial", sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f7fb;
+        color: #333;
+      }
+      header {
+        background-color: #4caf50;
+        color: white;
+        text-align: center;
+        padding: 40px 20px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+      header h1 {
+        font-size: 2.5rem;
+        margin-bottom: 10px;
+      }
+      header p {
+        font-size: 1.2rem;
+      }
+      /* Git Section Styles */
+      .git-section {
+        margin: 40px auto;
+        padding: 20px;
+        max-width: 900px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+      .git-section h2 {
+        color: #4caf50;
+        font-size: 1.8rem;
+        margin-bottom: 20px;
+      }
+      .command {
+        padding: 10px 15px;
+        margin-bottom: 20px;
+        background-color: #fafafa;
+        border: 1px solid #e0e0e0;
+        border-radius: 5px;
+      }
+      .command code {
+        display: block;
+        font-size: 1.1rem;
+        font-family: "Courier New", Courier, monospace;
+        color: #333;
+        background-color: #f2f2f2;
+        padding: 10px;
+        border-radius: 4px;
+        word-wrap: break-word;
+        width: 100%;
+        box-sizing: border-box;
+      }
+      .command p {
+        margin-top: 10px;
+        font-size: 1.1rem;
+        color: #666;
+      }
+      /* List Styles for Terminology Section */
+      .git-section ul {
+        list-style: none;
+        padding: 0;
+      }
+      .git-section ul li {
+        padding: 10px;
+        margin: 10px 0;
+        background-color: #fafafa;
+        border-left: 5px solid #4caf50;
+        border-radius: 4px;
+      }
+      .git-section ul li strong {
+        color: #4caf50;
+      }
+      /* Footer Styles */
+      footer {
+        text-align: center;
+        padding: 20px;
+        background-color: #333;
+        color: white;
+      }
+      footer p {
+        font-size: 1rem;
+      }
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        header h1 {
+          font-size: 2rem;
+        }
+        .git-section h2 {
+          font-size: 1.6rem;
+        }
+        .command code {
+          font-size: 1rem;
+        }
+        .command p {
+          font-size: 1rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Git Commands Cheat Sheet</h1>
+      <p>
+        A comprehensive list of commonly used Git commands and their
+        sub-options.
+      </p>
+    </header>
+    <section class="git-section">
+      <h2>About Git Terminologies</h2>
+      <p>
+        Git is a version control system that helps developers track changes in
+        their code. Here are some basic Git terminologies:
+      </p>
+      <ul>
+        <li>
+          <strong>Repository (Repo)</strong>: A Git repository is where your
+          project and its version history are stored. It can be local or remote.
+        </li>
+        <li>
+          <strong>Commit</strong>: A commit is a snapshot of your files and
+          changes. Each commit has a unique identifier called a commit hash.
+        </li>
+        <li>
+          <strong>Branch</strong>: A branch is a parallel version of your
+          repository. It allows you to work on different features or fixes
+          separately from the main codebase.
+        </li>
+        <li>
+          <strong>Staging Area</strong>: The staging area is where changes are
+          prepared before they are committed. Files must be added to this area
+          to be tracked by Git.
+        </li>
+        <li>
+          <strong>Merge</strong>: Merging is the process of combining changes
+          from different branches into a single branch.
+        </li>
+        <li>
+          <strong>Remote</strong>: A remote is a version of your repository that
+          is hosted on the internet, like GitHub, GitLab, or Bitbucket. It
+          allows collaboration between multiple people.
+        </li>
+        <li>
+          <strong>Clone</strong>: Cloning creates a copy of a repository from a
+          remote source onto your local machine.
+        </li>
+        <li>
+          <strong>Fork</strong>: Forking is creating your own copy of someone
+          else's repository, typically on platforms like GitHub, for
+          contributing or experimenting with code.
+        </li>
+        <li>
+          <strong>Pull Request</strong>: A pull request is a way of submitting
+          contributions to a project. It allows you to propose changes from one
+          branch or fork to another branch.
+        </li>
+        <li>
+          <strong>Tag</strong>: A tag is a reference to a specific point in
+          history in your repository, typically used to mark release versions.
+        </li>
+        <li>
+          <strong>Origin</strong> : In Git, "origin" is a shorthand name for the
+          remote repository that a project was originally cloned from
+        </li>
+      </ul>
+    </section>
+    <section class="git-section">
+      <h2>1. Setup Commands</h2>
+      <div class="command">
+        <code>git config --global user.name "Your Name"</code>
+        <p>Sets the global username for commits.</p>
+      </div>
+      <div class="command">
+        <code>git config --global user.email "your.email@example.com"</code>
+        <p>Sets the global email for commits.</p>
+      </div>
+      <div class="command">
+        <code>git config --list</code>
+        <p>Displays the current Git configuration.</p>
+      </div>
+    </section>
+    <section class="git-section">
+      <h2>2. Repository Management</h2>
+      <div class="command">
+        <code>git init</code>
+        <p>Initializes a new Git repository.</p>
+      </div>
+      <div class="command">
+        <code>git clone &lt;repo_url&gt;</code>
+        <p>Clones an existing repository from a remote URL.</p>
+      </div>
+      <div class="command">
+        <code>git remote add origin &lt;repo_url&gt;</code>
+        <p>Adds a new remote repository with the name "origin".</p>
+      </div>
+      <div class="command">
+        <code>git remote -v</code>
+        <p>Displays the URLs of remote repositories.</p>
+      </div>
+    </section>
+    <section class="git-section">
+      <h2>3. File Management</h2>
+      <div class="command">
+        <code>git add &lt;file&gt;</code>
+        <p>Adds a specific file to the staging area.</p>
+      </div>
+      <div class="command">
+        <code>git add .</code>
+        <p>Adds all modified files to the staging area.</p>
+      </div>
+      <div class="command">
+        <code>git reset &lt;file&gt;</code>
+        <p>Unstages a file from the staging area without deleting changes.</p>
+      </div>
+      <div class="command">
+        <code>git rm --cached &lt;file&gt;</code>
+        <p>
+          Removes a file from staging but keeps it in the working directory.
+        </p>
+      </div>
+      <div class="command">
+        <code>git rm &lt;file&gt;</code>
+        <p>Removes a file from the repository and working directory.</p>
+      </div>
+    </section>
+    <section class="git-section">
+      <h2>4. Commit Changes</h2>
+      <div class="command">
+        <code>git commit -m "Message"</code>
+        <p>Commits changes with a custom message.</p>
+      </div>
+      <div class="command">
+        <code>git commit --amend</code>
+        <p>Modifies the last commit message.</p>
+      </div>
+      <div class="command">
+        <code>git reset file</code>
+        <p>
+          Unstages a file that has been added to the staging area, but doesn't
+          change the working directory. The file is still modified in the
+          working directory.
+        </p>
+      </div>
+      <div class="command">
+        <code>git reset --soft commit-hash</code>
+        <p>
+          Resets the HEAD to the specified commit, but keeps the changes in the
+          staging area. The changes are ready to be committed again.
+        </p>
+      </div>
+      <div class="command">
+        <code>git reset --mixed commit-hash</code>
+        <p>
+          Resets the HEAD to the specified commit and unstages changes, but
+          keeps the changes in the working directory. This is the default
+          behavior if no option is specified.
+        </p>
+      </div>
+      <div class="command">
+        <code>git reset --hard commit-hash</code>
+        <p>
+          Resets the HEAD to the specified commit and removes all changes in the
+          working directory and staging area. This will delete any uncommitted
+          changes, so use with caution.
+        </p>
+      </div>
+    </section>
+    <section class="git-section">
+      <h2>5. Branching & Merging</h2>
+      <div class="command">
+        <code>git branch</code>
+        <p>Lists all branches in the repository.</p>
+      </div>
+      <div class="command">
+        <code>git branch &lt;branch&gt;</code>
+        <p>Creates a new branch.</p>
+      </div>
+      <div class="command">
+        <code>git checkout &lt;branch&gt;</code>
+        <p>Switches to a different branch.</p>
+      </div>
+      <div class="command">
+        <code>git checkout -b &lt;branch&gt;</code>
+        <p>Creates and switches to a new branch.</p>
+      </div>
+      <div class="command">
+        <code>git merge &lt;branch&gt;</code>
+        <p>Merges a branch into the current branch.</p>
+      </div>
+      <div class="command">
+        <code>git merge --no-ff &lt;branch&gt;</code>
+        <p>Creates a merge commit even if fast-forward is possible.</p>
+      </div>
+    </section>
+    <section class="git-section">
+      <h2>6. Rebasing</h2>
+      <div class="command">
+        <code>git rebase &lt;branch&gt;</code>
+        <p>Moves the current branch to the latest commit of another branch.</p>
+      </div>
+      <div class="command">
+        <code>git rebase -i HEAD~3</code>
+        <p>Interactive rebase for modifying the last 3 commits.</p>
+      </div>
+      <div class="command">
+        <code>git rebase --onto master feature-branch feature-branch-2</code>
+        <p>
+          Rebase feature-branch-2 onto master, using the base of feature-branch.
+        </p>
+      </div>
+      <div class="command">
+        <code>git rebase --abort</code>
+        <p>
+          Aborts the rebase operation and returns to the state before the
+          rebase.
+        </p>
+      </div>
+      <div class="command">
+        <code>git rebase --continue</code>
+        <p>Continues the rebase process after resolving conflicts.</p>
+      </div>
+      <div class="command">
+        <code>git rebase -i &lt;commit-hash&gt;</code>
+        <p>Interactive rebase starting from a specific commit.</p>
+      </div>
+      <div class="command">
+        <code>git rebase -i --root</code>
+        <p>Interactive rebase starting from the root commit.</p>
+      </div>
+      <section class="git-section">
+        <h2>6. Rebasing - Interactive Mode</h2>
+        <div class="command">
+          <code>git rebase -i commit-hash</code>
+          <p>
+            Starts an interactive rebase from a specific commit, allowing you to
+            modify commit history.
+          </p>
+        </div>
+        <div class="command">
+          <code>git rebase -i HEAD~3</code>
+          <p>Interactive rebase for modifying the last 3 commits.</p>
+        </div>
+        <div class="command">
+          <code>git rebase --onto new-base old-base branch-name</code>
+          <p>
+            Moves the entire branch starting from old-base to new-base, applying
+            all commits on top of the new base.
+          </p>
+        </div>
+        <div class="command">
+          <code>git rebase -i --root</code>
+          <p>
+            Starts an interactive rebase from the root commit, allowing you to
+            rewrite the entire commit history.
+          </p>
+        </div>
+
+        <h3>Rebase Modes</h3>
+        <div class="command">
+          <code>pick commit-hash</code>
+          <p>Uses the commit as is (no changes). This is the default action.</p>
+        </div>
+        <div class="command">
+          <code>reword commit-hash</code>
+          <p>Allows you to edit the commit message of the selected commit.</p>
+        </div>
+        <div class="command">
+          <code>edit commit-hash</code>
+          <p>
+            Pauses the rebase to allow changes to be made to the commit (you can
+            amend the commit or change files).
+          </p>
+        </div>
+        <div class="command">
+          <code>squash commit-hash</code>
+          <p>
+            Combines the selected commit with the previous commit and allows you
+            to modify the commit message.
+          </p>
+        </div>
+        <div class="command">
+          <code>fixup commit-hash</code>
+          <p>
+            Similar to "squash," but discards the commit message of the selected
+            commit (it keeps the message of the previous commit).
+          </p>
+        </div>
+        <div class="command">
+          <code>drop commit-hash</code>
+          <p>Removes the selected commit from the history entirely.</p>
+        </div>
+      </section>
+    </section>
+    <section class="git-section">
+      <h2>7. Stashing</h2>
+      <div class="command">
+        <code>git stash</code>
+        <p>Temporarily saves uncommitted changes.</p>
+      </div>
+      <div class="command">
+        <code>git stash list</code>
+        <p>Shows a list of saved stashes.</p>
+      </div>
+      <div class="command">
+        <code>git stash apply</code>
+        <p>Applies the most recent stash without removing it.</p>
+      </div>
+      <div class="command">
+        <code>git stash pop</code>
+        <p>Applies the most recent stash and removes it from stash list.</p>
+      </div>
+    </section>
+    <section class="git-section">
+      <h2>8. Cherry-picking</h2>
+      <div class="command">
+        <code>git cherry-pick &lt;commit-hash&gt;</code>
+        <p>Applies a specific commit from another branch.</p>
+      </div>
+    </section>
+    <section class="git-section">
+      <h2>9. Interacting with GitHub</h2>
+      <div class="command">
+        <code>git push origin &lt;branch&gt;</code>
+        <p>
+          Pushes the current branch to the remote repository named "origin".
+        </p>
+      </div>
+      <div class="command">
+        <code>git push origin --all</code>
+        <p>Pushes all branches to the remote repository named "origin".</p>
+      </div>
+      <div class="command">
+        <code>git push origin --tags</code>
+        <p>Pushes all tags to the remote repository named "origin".</p>
+      </div>
+      <div class="command">
+        <code>git pull origin &lt;branch&gt;</code>
+        <p>
+          Fetches and merges changes from the remote repository named "origin"
+          into the current branch.
+        </p>
+      </div>
+      <div class="command">
+        <code>git fetch origin</code>
+        <p>
+          Fetches changes from the remote repository named "origin" without
+          merging.
+        </p>
+      </div>
+      <div class="command">
+        <code>git fetch origin &lt;branch&gt;</code>
+        <p>
+          Fetches changes from a specific branch of the remote repository named
+          "origin" without merging.
+        </p>
+      </div>
+    </section>
+    <section class="git-section">
+      <h2>10. Collaboration</h2>
+      <div class="command">
+        <code>git fork</code>
+        <p>
+          Creates a personal copy of someone else's repository on GitHub (done
+          on GitHub website).
+        </p>
+      </div>
+      <div class="command">
+        <code>git pull-request</code>
+        <p>Requests to merge changes from your branch into another branch</p>
+      </div>
+    </section>
+    <section class="git-section">
+      <h2>11. Viewing Changes</h2>
+      <div class="command">
+        <code>git status</code>
+        <p>
+          Displays the current status of the working directory and staging area.
+        </p>
+      </div>
+      <div class="command">
+        <code>git diff</code>
+        <p>
+          Shows the differences between the working directory and the staging
+          area.
+        </p>
+      </div>
+      <div class="command">
+        <code>git diff --staged</code>
+        <p>
+          Shows the differences between the staging area and the last commit.
+        </p>
+      </div>
+    </section>
+    <section class="git-section">
+      <h2>12. Logs and History</h2>
+      <div class="command">
+        <code>git log</code>
+        <p>Displays the commit history.</p>
+      </div>
+      <div class="command">
+        <code>git log --oneline</code>
+        <p>
+          Displays the commit history in a condensed format, showing one line
+          per commit.
+        </p>
+      </div>
+      <div class="command">
+        <code>git log --graph</code>
+        <p>Displays the commit history in a graphical format.</p>
+      </div>
+      <div class="command">
+        <code> git show commit-hash </code>
+        <p>Displays detailed information about a specific commit.</p>
+      </div>
+    </section>
+    <section class="git-section">
+      <h2>13. Tagging</h2>
+      <div class="command">
+        <code>git tag</code>
+        <p>Lists all tags in the repository.</p>
+      </div>
+      <div class="command">
+        <code> git tag tag-name </code>
+        <p>Creates a new tag at the current commit.</p>
+      </div>
+      <div class="command">
+        <code> git tag -a tag-name -m "message" </code>
+        <p>Creates an annotated tag with a message.</p>
+      </div>
+      <div class="command">
+        <code> git push origin tag-name </code>
+        <p>Pushes a specific tag to the remote repository.</p>
+      </div>
+      <div class="command">
+        <code>git push --tags</code>
+        <p>Pushes all tags to the remote repository.</p>
+      </div>
+    </section>
+    <section class="git-section">
+      <h2>14. Miscellaneous</h2>
+      <div class="command">
+        <code>git stash drop</code>
+        <p>Removes a specific stash from the stash list.</p>
+      </div>
+      <div class="command">
+        <code>git stash clear</code>
+        <p>Removes all stashes from the stash list.</p>
+      </div>
+      <div class="command">
+        <code>git rebase --skip</code>
+        <p>Skips the current patch during a rebase.</p>
+      </div>
+      <div class="command">
+        <code>git bisect</code>
+        <p>
+          Helps to find the commit that introduced a bug by performing a binary
+          search.
+        </p>
+      </div>
+    </section>
+    <section class="git-section">
+      <h2>15. Git Checkout</h2>
+      <div class="command">
+        <code>git checkout branch</code>
+        <p>Switches to a different branch in the repository.</p>
+      </div>
+      <div class="command">
+        <code>git checkout commit-hash</code>
+        <p>Switches to a specific commit (detached HEAD state).</p>
+      </div>
+      <div class="command">
+        <code>git checkout -b branch</code>
+        <p>Creates a new branch and switches to it.</p>
+      </div>
+      <div class="command">
+        <code>git checkout -- file</code>
+        <p>
+          Restores a file in the working directory to its state from the most
+          recent commit.
+        </p>
+      </div>
+      <div class="command">
+        <code>git checkout branch -- file</code>
+        <p>
+          Restores a specific file from another branch, without switching the
+          entire branch.
+        </p>
+      </div>
+      <div class="command">
+        <code>git checkout .</code>
+        <p>
+          Restores all modified files in the working directory to their state
+          from the most recent commit.
+        </p>
+      </div>
+    </section>
+
+    <footer>
+      <p>
+        Git Commands Cheat Sheet - A handy guide for developers created by
+        Vedant
+      </p>
+    </footer>
+  </body>
+</html>
